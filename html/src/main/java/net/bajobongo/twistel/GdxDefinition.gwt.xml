@@ -17,11 +17,12 @@
   <inherits name="com.badlogic.gdx.backends.gdx_backends_gwt" />
   <inherits name="aurelienribon.tweenengine" />
   <inherits name="com.badlogic.ashley_gwt" />
-  <inherits name="com.github.tommyettinger.textratypist" />
-  <inherits name="com.ray3k.stripe" />
-  <inherits name="formic" />
+  <inherits name="net.snowyhollows.bento.core" />
+<!--  <inherits name="com.github.tommyettinger.textratypist" />-->
+<!--  <inherits name="com.ray3k.stripe" />-->
+<!--  <inherits name="formic" />-->
   <inherits name="net.bajobongo.twistel.Main" />
-  <inherits name="regexodus.regexodus" />
+<!--  <inherits name="regexodus.regexodus" />-->
 
   <!-- You must change this if you rename packages later, or rename GwtLauncher. -->
   <entry-point class="net.bajobongo.twistel.gwt.GwtLauncher" />

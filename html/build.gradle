@@ -37,6 +37,7 @@ dependencies {
   implementation "com.github.tommyettinger:regexodus:$regExodusVersion:sources"
   implementation "com.github.tommyettinger:textratypist:$textratypistVersion:sources"
   implementation "org.mini2Dx:universal-tween-engine:$universalTweenVersion:sources"
+  implementation "net.snowyhollows.bento:bento-core:1.7.0:sources"
   implementation project(':core')
 
 }

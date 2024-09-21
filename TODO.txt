@@ -1,0 +1,15 @@
+animation when elements disappear
+animation when elements appear (setup; fade in or grow, or both)
+waypoints when "rotating"
+animation when score changes
+animation when buttons are added
+sound effects: fire disappears,
+sound effects: water disappears,
+sound effects: earth disappears,
+sound effects: air disappears,
+sound effects: swoosh when rotating
+sound effects: jiggle when sliding
+add publication to itchio
+add combo bonus
+unclickable elements are less visible
+there is an indicator for which elements will turn

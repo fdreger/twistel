@@ -2,43 +2,30 @@ package net.bajobongo.twistel.system;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.math.Vector3;
 import net.bajobongo.twistel.component.Place;
-import net.bajobongo.twistel.component.RectangleComponent;
+import net.bajobongo.twistel.game.HeadLocator;
+import net.bajobongo.twistel.game.PlayerInput;
+import net.bajobongo.twistel.infrastructure.GameCamera;
+import net.snowyhollows.bento.annotation.WithFactory;
 
 public class ClickToRemoveSystem extends EntitySystem {
+    private final PlayerInput playerInput;
 
-    private Entity head;
-    private final Camera camera;
-
-    public ClickToRemoveSystem(Entity head, Camera camera) {
-        this.head = head;
-        this.camera = camera;
+    @WithFactory
+    public ClickToRemoveSystem(HeadLocator headLocator, GameCamera camera, PlayerInput playerInput) {
+        this.playerInput = playerInput;
     }
 
     @Override
     public void update(float deltaTime) {
-        if (Gdx.input.justTouched()) {
-            Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camera.unproject(mousePos);
 
-            Entity current = head;
-            while (current != null) {
-                RectangleComponent rect = current.getComponent(RectangleComponent.class);
-                if (rect != null && rect.contains(mousePos.x, mousePos.y)) {
-                    Place place = current.getComponent(Place.class);
-                    if (place != null) {
-                        Entity element = place.getElement();
-                        if (element != null) {
-                            getEngine().removeEntity(element);
-                            place.setElement(null);
-                        }
-                        break;
-                    }
-                }
-                current = current.getComponent(Place.class).getNext();
+        Entity clickedPlaceEntity = playerInput.getJustClickedPlace();
+        if (clickedPlaceEntity != null) {
+            Place clickedPlace = clickedPlaceEntity.getComponent(Place.class);
+            Entity element = clickedPlace.getElement();
+            if (element != null) {
+                getEngine().removeEntity(element);
+                clickedPlace.setElement(null);
             }
         }
     }

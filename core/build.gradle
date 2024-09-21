@@ -9,6 +9,8 @@ dependencies {
   api "com.github.tommyettinger:regexodus:$regExodusVersion"
   api "com.github.tommyettinger:textratypist:$textratypistVersion"
   api "org.mini2Dx:universal-tween-engine:$universalTweenVersion"
+  api "net.snowyhollows.bento:bento-core:1.7.0"
+  annotationProcessor "net.snowyhollows.bento:bento-generator:1.7.0"
 
   if(enableGraalNative == 'true') {
     implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"
