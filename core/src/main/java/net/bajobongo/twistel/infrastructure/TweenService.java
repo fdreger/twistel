@@ -52,6 +52,10 @@ public class TweenService {
         return tweenManager.getRunningTweensCount() != 0 || tweenManager.getRunningTimelinesCount() != 0;
     }
 
+    public boolean isAnythingTweening() {
+        return tweenManager.getRunningTweensCount() != 0 || tweenManager.getRunningTimelinesCount() != 0 || fxTweenManager.getRunningTweensCount() != 0 || fxTweenManager.getRunningTimelinesCount() != 0;
+    }
+
     public TweenManager getTweenManager() {
         return tweenManager;
     }

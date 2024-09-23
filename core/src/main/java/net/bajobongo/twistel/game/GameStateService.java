@@ -86,6 +86,7 @@ public class GameStateService {
     public void play() {
         score = 0;
         bonus = 0;
+        gameStage.showScore(0);
         assetsService.getMusic().play();
         situation = Situation.PLAYING;
         gameStage.hideGui();

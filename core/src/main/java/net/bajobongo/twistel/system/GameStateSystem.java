@@ -43,11 +43,11 @@ public class GameStateSystem extends EntitySystem {
         } else {
             gameStateService.update(deltaTime);
 
-            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
                 gameStateService.endGame();
             }
 
-            if (tweenService.isTweening()) {
+            if (tweenService.isAnythingTweening()) {
                 return;
             }
             // calculate counts of elements
