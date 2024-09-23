@@ -10,9 +10,8 @@ public class GameViewport extends FitViewport {
 
     @WithFactory
     public GameViewport(GameCamera gameCamera, GameSpriteBatch spriteBatch) {
-        super(800, 600);
+        super(800, 600, gameCamera);
         this.spriteBatch = spriteBatch;
-        setCamera(gameCamera);
     }
 
     @Override

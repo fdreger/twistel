@@ -4,6 +4,7 @@ import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenEquations;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.gdx.math.Vector2;
 import net.bajobongo.twistel.assets.AssetsService;
 import net.bajobongo.twistel.component.Place;
 import net.bajobongo.twistel.component.RectangleComponent;
@@ -72,9 +73,23 @@ public class ClickToTwistSystem extends EntitySystem {
         tweenFromTo(from.getComponent(RectangleComponent.class), to.getComponent(RectangleComponent.class));
     }
 
+    private Vector2 tmpFrom = new Vector2();
+    private Vector2 tmpTo = new Vector2();
+    private Vector2 middle = new Vector2();
+    private Vector2 unit = new Vector2();
     void tweenFromTo(RectangleComponent from, RectangleComponent to) {
-        Tween.to(from, 0, 0.2f)
+
+        tmpFrom = new Vector2(from.getCenterX(), from.getCenterY());
+        tmpTo = new Vector2(to.getCenterX(), to.getCenterY());
+        float length = tmpFrom.dst(tmpTo);
+
+        middle.set(tmpFrom.cpy()).add(tmpTo).scl(0.5f);
+
+        unit.set(tmpTo).sub(tmpFrom).nor().rotate90(1).scl(length / 2);
+
+        Tween.to(from, 0, 0.3f)
             .target(to.getCenterX(), to.getCenterY())
+            .waypoint(middle.x + unit.x, middle.y + unit.y)
             .ease(TweenEquations.easeInOutQuad)
             .start(tweenService.getTweenManager());
     }
