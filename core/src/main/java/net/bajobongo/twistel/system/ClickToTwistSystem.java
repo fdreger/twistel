@@ -4,6 +4,7 @@ import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenEquations;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
+import net.bajobongo.twistel.assets.AssetsService;
 import net.bajobongo.twistel.component.Place;
 import net.bajobongo.twistel.component.RectangleComponent;
 import net.bajobongo.twistel.game.GameStateService;
@@ -20,13 +21,15 @@ public class ClickToTwistSystem extends EntitySystem {
     private final PlayerInput playerInput;
     private final HeadLocator headLocator;
     private final TweenService tweenService;
+    private final AssetsService assetsService;
 
     @WithFactory
-    public ClickToTwistSystem(GameStateService gameStateService, PlayerInput playerInput, HeadLocator headLocator, TweenService tweenService) {
+    public ClickToTwistSystem(GameStateService gameStateService, PlayerInput playerInput, HeadLocator headLocator, TweenService tweenService, AssetsService assetsService) {
         this.gameStateService = gameStateService;
         this.playerInput = playerInput;
         this.headLocator = headLocator;
         this.tweenService = tweenService;
+        this.assetsService = assetsService;
     }
 
     private List<Entity> placesToTwist = new ArrayList<>();
@@ -49,6 +52,9 @@ public class ClickToTwistSystem extends EntitySystem {
         }
 
         int pairs = (int) Math.ceil(placesToTwist.size() / 2.0);
+        if (pairs > 0) {
+            assetsService.getWoosh().play(0.2f, (float) (1 + Math.random() * 0.2f), 0);
+        }
         for (int i = 0; i < pairs; i++) {
             Entity place1 = placesToTwist.get(i);
             Entity place2 = placesToTwist.get(placesToTwist.size() - i - 1);
@@ -62,12 +68,13 @@ public class ClickToTwistSystem extends EntitySystem {
     }
 
     void tweenFromTo(Entity from, Entity to) {
+        if (from == null || to == null) return;
         tweenFromTo(from.getComponent(RectangleComponent.class), to.getComponent(RectangleComponent.class));
     }
 
     void tweenFromTo(RectangleComponent from, RectangleComponent to) {
         Tween.to(from, 0, 0.2f)
-            .target(to.x, to.y)
+            .target(to.getCenterX(), to.getCenterY())
             .ease(TweenEquations.easeInOutQuad)
             .start(tweenService.getTweenManager());
     }

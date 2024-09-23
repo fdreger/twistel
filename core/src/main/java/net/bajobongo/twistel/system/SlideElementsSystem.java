@@ -42,7 +42,7 @@ public class SlideElementsSystem extends EntitySystem {
                             nextPlaceEntity.getComponent(Place.class).setElement(null);
                             RectangleComponent target = currentPlaceEntity.getComponent(RectangleComponent.class);
                             Tween.to(nextElement.getComponent(RectangleComponent.class), 0, 0.2f)
-                                .target(target.x, target.y)
+                                .target(target.getCenterX(), target.getCenterY())
                                 .ease(TweenEquations.easeOutCirc)
                                 .start(tweenService.getTweenManager());
                         }

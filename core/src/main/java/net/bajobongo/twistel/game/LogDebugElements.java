@@ -3,7 +3,6 @@ package net.bajobongo.twistel.game;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import net.bajobongo.twistel.component.Element;
-import net.bajobongo.twistel.component.ElementType;
 import net.bajobongo.twistel.component.Place;
 import net.snowyhollows.bento.annotation.WithFactory;
 
@@ -24,7 +23,7 @@ public class LogDebugElements extends EntitySystem {
             Entity current = headLocator.findHead();
 
             while (current != null) {
-                ElementType currentType = current.getComponent(Place.class).getElement() == null ? null :  current.getComponent(Place.class).getElement().getComponent(Element.class).type;
+                Element.ElementType currentType = current.getComponent(Place.class).getElement() == null ? null :  current.getComponent(Place.class).getElement().getComponent(Element.class).type;
                 System.out.println(currentType);
                 current = current.getComponent(Place.class).getNext();
             }

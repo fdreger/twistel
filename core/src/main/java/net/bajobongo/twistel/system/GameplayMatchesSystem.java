@@ -4,7 +4,6 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import net.bajobongo.twistel.game.ElementDisappearer;
 import net.bajobongo.twistel.component.Element;
-import net.bajobongo.twistel.component.ElementType;
 import net.bajobongo.twistel.component.Place;
 import net.bajobongo.twistel.game.HeadLocator;
 import net.bajobongo.twistel.infrastructure.TweenService;
@@ -36,14 +35,14 @@ public class GameplayMatchesSystem extends EntitySystem {
         }
         Entity current = headLocator.findHead();
 
-        ElementType lastType = null;
+        Element.ElementType lastType = null;
         placesToEmpty.clear();
         running.clear();
 
         while (current != null) {
             Place place = current.getComponent(Place.class);
             if (place != null) {
-                ElementType type = place.getElement() == null ? null : place.getElement().getComponent(Element.class).type;
+                Element.ElementType type = place.getElement() == null ? null : place.getElement().getComponent(Element.class).type;
                 if (type != null) {
                     if (type.equals(lastType)) {
                         running.add(current);

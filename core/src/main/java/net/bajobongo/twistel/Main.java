@@ -2,11 +2,9 @@ package net.bajobongo.twistel;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import net.bajobongo.twistel.component.SpriteService;
-import net.bajobongo.twistel.component.SpriteServiceFactory;
+import net.bajobongo.twistel.assets.AssetsServiceFactory;
 import net.bajobongo.twistel.game.InitialPatternFactory;
 import net.bajobongo.twistel.game.SystemsFactory;
 import net.bajobongo.twistel.infrastructure.*;
@@ -24,13 +22,13 @@ public class Main extends ApplicationAdapter {
         gameViewport = bento.get(GameViewportFactory.IT);
         bento.get(InitialPatternFactory.IT).init();
         bento.get(SystemsFactory.IT).init();
-        bento.get(SpriteServiceFactory.IT).init();
+        bento.get(AssetsServiceFactory.IT).init();
     }
 
 
     @Override
     public void render() {
-        ScreenUtils.clear(0.75f, 0.75f, 0.85f, 1f);
+        ScreenUtils.clear(0.2f, 0.2f, 0.26f, 1f);
         ashley.getEngine().update(Gdx.graphics.getDeltaTime());
     }
 

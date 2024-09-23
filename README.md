@@ -10,7 +10,13 @@ otherwise be impossible, and it can also be used to make matches that would be i
 
 That paragraph above is a 100% lie, it was created by the GitHub Copilot AI, and it insisted.
 
-### done
+## done:
+
+### release 0.2
+animation when elements disappear
+animation when elements appear (setup; fade in or grow, or both)
+animation when buttons are added
+there is an indicator for which elements will turn
 
 #### release 0.1
 Basic gameplay is in place
