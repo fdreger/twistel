@@ -11,10 +11,10 @@ public class Element implements Component  {
     }
 
     public enum ElementType {
-        FIRE(Color.RED),
-        WATER(Color.GREEN),
+        FIRE(Color.RED.cpy().lerp(Color.ORANGE, 0.2f)),
+        WATER(Color.BLUE.cpy().lerp(Color.CYAN, 0.2f)),
         EARTH(Color.BROWN),
-        AIR(Color.YELLOW);
+        AIR(Color.CYAN.cpy().lerp(Color.WHITE, 0.9f));
         public final Color color;
 
         ElementType(Color color) {

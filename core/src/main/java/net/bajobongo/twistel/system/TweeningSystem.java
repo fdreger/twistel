@@ -14,10 +14,8 @@ public class TweeningSystem extends EntitySystem {
 
     @Override
     public void update(float deltaTime) {
-        if (tweenService.isTweening()) {
-            tweenService.getTweenManager().update(deltaTime);
-            tweenService.getFxTweenManager().update(deltaTime);
-        }
+        tweenService.getFxTweenManager().update(deltaTime);
+        tweenService.getTweenManager().update(deltaTime);
     }
 
 }

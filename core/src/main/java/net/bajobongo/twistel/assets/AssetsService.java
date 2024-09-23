@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import net.bajobongo.twistel.infrastructure.GameAssetsManager;
 import net.snowyhollows.bento.annotation.WithFactory;
 
@@ -18,6 +19,7 @@ public class AssetsService {
     private static final String PLINK = "snd/plink-game.wav";
     private static final String WOOSH = "snd/woosh-game.wav";
     private static final String GAME_OVER = "snd/game-over-game.wav";
+    private static final String SKIN = "flatpack.json";
 
     private final GameAssetsManager gameAssetsManager;
     private TextureRegion circle;
@@ -27,6 +29,7 @@ public class AssetsService {
     private Sound plink;
     private Sound gameOver;
     private Sound woosh;
+    private Skin skin;
 
     @WithFactory
     public AssetsService(GameAssetsManager gameAssetsManager) {
@@ -44,10 +47,12 @@ public class AssetsService {
         gameAssetsManager.load(PLINK, Sound.class);
         gameAssetsManager.load(GAME_OVER, Sound.class);
         gameAssetsManager.load(WOOSH, Sound.class);
+        gameAssetsManager.load(SKIN, Skin.class);
         gameAssetsManager.finishLoading();
         Texture circleTexture = gameAssetsManager.get(WHITE_CIRCLE_PNG, Texture.class);
         font = gameAssetsManager.get(FONT_NAME, BitmapFont.class);
         circle = new TextureRegion(circleTexture, circleTexture.getWidth(), circleTexture.getHeight());
+        skin = gameAssetsManager.get(SKIN, Skin.class);
         fontShader = new ShaderProgram(Gdx.files.internal("font-vert.glsl"), Gdx.files.internal("font-frag.glsl"));
         music = gameAssetsManager.get(SONG_NAME, Music.class);
         plink = gameAssetsManager.get(PLINK, Sound.class);
@@ -81,5 +86,9 @@ public class AssetsService {
 
     public Sound getWoosh() {
         return woosh;
+    }
+
+    public Skin getSkin() {
+        return skin;
     }
 }

@@ -7,6 +7,7 @@ import net.bajobongo.twistel.component.Clickable;
 import net.bajobongo.twistel.component.Place;
 import net.bajobongo.twistel.component.RectangleComponent;
 import net.bajobongo.twistel.infrastructure.GameCamera;
+import net.bajobongo.twistel.infrastructure.GameViewport;
 import net.snowyhollows.bento.annotation.WithFactory;
 
 import java.util.ArrayList;
@@ -16,13 +17,13 @@ import java.util.Set;
 public class PlayerInput {
 
     HeadLocator headLocator;
-    private final GameCamera camera;
+    private final GameViewport camera;
 
     private final List<Entity> mouseOverPlaces = new ArrayList<>();
 
 
     @WithFactory
-    public PlayerInput(HeadLocator headLocator, GameCamera camera) {
+    public PlayerInput(HeadLocator headLocator, GameViewport camera) {
         this.headLocator = headLocator;
         this.camera = camera;
     }

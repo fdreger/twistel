@@ -1,0 +1,56 @@
+{
+"com.badlogic.gdx.graphics.g2d.BitmapFont": {
+	"YanoneKaffeesatz-standard": {
+		"file": "YanoneKaffeesatz-standard.fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	}
+},
+"com.badlogic.gdx.graphics.Color": {
+	"main": {
+		"r": 0.9607843,
+		"g": 0.9098039,
+		"b": 0.9098039,
+		"a": 1
+	},
+	"background": {
+		"r": 0.8039216,
+		"g": 0.5686275,
+		"b": 0.5686275,
+		"a": 1
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable": {
+	"background_drawable": {
+		"name": "white-pixel",
+		"color": "background"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
+	"default": {
+		"pressedOffsetY": -1
+	}
+},
+  "com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": {
+    "default": {
+      "font": "YanoneKaffeesatz-standard",
+      "fontColor": "main"
+    }
+  },
+"com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
+	"default": {
+		"font": "YanoneKaffeesatz-standard",
+		"fontColor": "main"
+	},
+	"flatpack": {
+		"font": "YanoneKaffeesatz-standard",
+		"fontColor": "main"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle": {
+	"default": {
+		"label": "default"
+	}
+}
+}

@@ -15,6 +15,7 @@ public class Systems {
     private final HudDisplaySystem hudDisplaySystem;
     private final GameStateSystem gameStateSystem;
     private final GameplayMatchesSystem gameplayMatchesSystem;
+    private final StageSystem stageSystem;
 
     @WithFactory
     public Systems(Ashley ashley,
@@ -26,7 +27,7 @@ public class Systems {
                    TweeningSystem tweeningSystem,
                    HudDisplaySystem hudDisplaySystem,
                    GameStateSystem gameStateSystem,
-                   GameplayMatchesSystem gameplayMatchesSystem) {
+                   GameplayMatchesSystem gameplayMatchesSystem, StageSystem stageSystem) {
         this.ashley = ashley;
         this.displaySystem = displaySystem;
         this.logDebugElements = logDebugElements;
@@ -37,10 +38,12 @@ public class Systems {
         this.hudDisplaySystem = hudDisplaySystem;
         this.gameStateSystem = gameStateSystem;
         this.gameplayMatchesSystem = gameplayMatchesSystem;
+        this.stageSystem = stageSystem;
     }
 
     public void init() {
         ashley.getEngine().addSystem(displaySystem);
+        ashley.getEngine().addSystem(stageSystem);
 //        ashley.getEngine().addSystem(clickToRemoveSystem);
 //        ashley.getEngine().addSystem(logDebugElements);
         ashley.getEngine().addSystem(clickToTwistSystem);

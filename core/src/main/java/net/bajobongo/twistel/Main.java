@@ -23,6 +23,7 @@ public class Main extends ApplicationAdapter {
         bento.get(InitialPatternFactory.IT).init();
         bento.get(SystemsFactory.IT).init();
         bento.get(AssetsServiceFactory.IT).init();
+        bento.get(GameStageFactory.IT).init();
     }
 
 

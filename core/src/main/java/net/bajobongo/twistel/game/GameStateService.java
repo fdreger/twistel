@@ -1,11 +1,13 @@
 package net.bajobongo.twistel.game;
 
 import net.bajobongo.twistel.assets.AssetsService;
+import net.bajobongo.twistel.infrastructure.GameStage;
 import net.snowyhollows.bento.annotation.WithFactory;
 
 public class GameStateService {
 
     private final AssetsService assetsService;
+    private final GameStage gameStage;
     public static final float BONUS_BARRIER = 200f;
 
     public enum Situation {
@@ -36,14 +38,16 @@ public class GameStateService {
     private final InitialPattern initialPattern;
 
     @WithFactory
-    public GameStateService(AssetsService assetsService, InitialPattern initialPattern) {
+    public GameStateService(AssetsService assetsService, GameStage gameStage, InitialPattern initialPattern) {
         this.assetsService = assetsService;
+        this.gameStage = gameStage;
         this.initialPattern = initialPattern;
     }
 
     public void addScore(int score) {
         this.score += score;
         this.bonus += score;
+        gameStage.showScore(this.score);
         while (bonus > BONUS_BARRIER) {
             bonus -= BONUS_BARRIER;
             initialPattern.fillUp();
@@ -59,10 +63,7 @@ public class GameStateService {
     }
 
     public void endGame() {
-        if (isPlaying()) {
-            assetsService.getMusic().stop();
-            assetsService.getGameOver().play(0.9f);
-        }
+        Situation lastSituation = situation;
         if (highScore < score) {
             highScore = score;
             bonus = 0;
@@ -71,6 +72,15 @@ public class GameStateService {
             bonus = 0;
             situation = Situation.WAITING_FOR_START;
         }
+        if (lastSituation != situation) {
+            assetsService.getMusic().stop();
+            assetsService.getGameOver().play(0.9f);
+            if (situation == Situation.HIGH_SCORE) {
+                gameStage.showHighScore(highScore);
+            } else {
+                gameStage.showRestart();
+            }
+        }
     }
 
     public void play() {
@@ -78,6 +88,7 @@ public class GameStateService {
         bonus = 0;
         assetsService.getMusic().play();
         situation = Situation.PLAYING;
+        gameStage.hideGui();
     }
 
     float updated = 0;
